@@ -1,0 +1,31 @@
+name: Daily Numerai Auto-Submit
+
+on:
+  schedule:
+    - cron: '30 14 * * *'  # Runs every day at 14:30 UTC = 9:30 AM EST
+                          # Change if you want different time (e.g. '0 15 * * *' = 10 AM EST)
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install numerapi pandas numpy
+
+    - name: Run daily submission
+      env:
+        PUBLIC_ID: ${{ secrets.PUBLIC_ID }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        MODEL_ID: ${{ secrets.MODEL_ID }}
+      run: python auto_submit.py
