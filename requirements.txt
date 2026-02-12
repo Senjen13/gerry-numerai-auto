@@ -2,3 +2,5 @@ numerapi
 pandas
 pyarrow
 scipy
+lightgbm
+numpy
