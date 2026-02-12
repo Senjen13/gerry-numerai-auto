@@ -27,7 +27,7 @@ print(f"Current round: {current_round}")
 # ── 3. Download latest live data ──────────────────────────────────────────────
 print("Downloading live data...")
 try:
-    napi.download_dataset("v4.3/live.parquet", "live.parquet")
+    napi.download_dataset("v5.2/live.parquet", "live.parquet")
     print("Live data downloaded.")
 except Exception as e:
     print(f"ERROR downloading live data: {e}")
@@ -36,7 +36,7 @@ except Exception as e:
 # ── 4. Download meta model for neutralization proxy ───────────────────────────
 print("Downloading meta model...")
 try:
-    napi.download_dataset("v4.3/meta_model.parquet", "meta_model.parquet")
+    napi.download_dataset("v5.2/meta_model.parquet", "meta_model.parquet")
     print("Meta model downloaded.")
 except Exception as e:
     print(f"WARNING: Meta model download failed: {e}")
@@ -127,7 +127,7 @@ try:
 
         # Load recent validation eras for proxy fitting
         try:
-            napi.download_dataset("v4.3/validation.parquet", "validation.parquet")
+            napi.download_dataset("v5.2/validation.parquet", "validation.parquet")
             val = pd.read_parquet("validation.parquet")
             val_meta = val.join(meta[["numerai_meta_model"]], how="inner")
             recent_eras = sorted(
