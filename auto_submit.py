@@ -161,7 +161,7 @@ print(f"Rows: {len(submission):,}")
 
 # ── 12. Upload to Numerai ─────────────────────────────────────────────────────
 try:
-    upload_id = napi.upload_predictions(submission_file, model_id=MODEL_ID)
+    #upload_id = napi.upload_predictions(submission_file, model_id=MODEL_ID)
     print(f"\nAuto-submit SUCCESS! Upload ID: {upload_id}")
 except Exception as e:
     print(f"\nERROR: Upload failed: {e}")
